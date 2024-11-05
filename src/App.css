@@ -1,45 +1,80 @@
+/* Estilos generales para el modo oscuro */
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.change-button {
- position: absolute;
- top: 10px;
- right: 10px;
- 
-}
-
-.App-header {
-  background-color: #282c34;
+  background-color: #121212;
+  color: #e0e0e0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-family: Arial, sans-serif;
 }
 
-.App-link {
-  color: #61dafb;
+/* Contenedor para el mensaje inicial */
+.start-container {
+  text-align: center;
+  padding: 50px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.title {
+  font-size: 2em;
+  color: #00e676;
+}
+
+.text {
+  color: #bdbdbd;
+}
+
+/* Contenedor para los botones de cambio de color */
+.button-container {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  width: 100%;
+}
+
+/* Estilo general para los botones */
+.button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #1f1f1f;
+  color: #00e676;
+  border: 2px solid #00e676;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #00e676;
+  color: #121212;
+}
+
+/* Botón de cerrar escena */
+.close-button {
+  background-color: #e53935;
+  color: #ffffff;
+  border: 2px solid #e53935;
+}
+
+.close-button:hover {
+  background-color: #ffffff;
+  color: #e53935;
+}
+
+/* Botón de inicio */
+.start-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #00e676;
+  color: #121212;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.start-button:hover {
+  background-color: #1f1f1f;
+  color: #00e676;
 }

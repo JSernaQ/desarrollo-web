@@ -1,16 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
+import './App.css'
 
 const App = () => {
   const mountRef = useRef(null);
+  const [showScene, setShowScene] = useState(false);
 
   const [cubeColor, setCubeColor] = useState(0x00ff00);
   const [cylinderColor, setCylinderColor] = useState(0xff0000);
   const [triangleColor, setTriangleColor] = useState(0x0000ff);
 
   useEffect(() => {
-    const currentMount = mountRef.current;
+    if (!showScene) return;
 
+    const currentMount = mountRef.current;
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     camera.position.z = 5;
@@ -48,22 +51,44 @@ const App = () => {
     };
     animate();
 
-    // Función de limpieza que elimina el elemento del DOM
     return () => {
       currentMount.removeChild(renderer.domElement);
     };
-  }, [cubeColor, cylinderColor, triangleColor]);
+  }, [showScene, cubeColor, cylinderColor, triangleColor]);
 
   return (
-    <div className='App'>
-      <h1>Escena 3D con Three.js y React</h1>
-      <div ref={mountRef} style={{ width: "100%", height: "80vh" }}></div>
-      <div style={{  display: "flex", justifyContent: "space-between", width: "100%",  padding: "20px" }}>
-        <button onClick={() => setTriangleColor(Math.random() * 0xffffff)}>Cambiar color de la piramide</button>
-        <button onClick={() => setCubeColor(Math.random() * 0xffffff)}>Cambiar color del cubo</button>
-        <button onClick={() => setCylinderColor(Math.random() * 0xffffff)}>Cambiar color del cilindro</button>
-      </div>
+    <div className="App">
+      {showScene ? (
+        <>
+          <div ref={mountRef} style={{ display: 'block', width: '100%', height: '70vh' }}></div>
+          <div className="button-container">
+            <button className="button" onClick={() => setTriangleColor(Math.random() * 0xffffff)}>
+              Cambiar color de la Pirámide
+            </button>
+            <button className="button" onClick={() => setCubeColor(Math.random() * 0xffffff)}>
+              Cambiar color del Cubo
+            </button>
+            <button className="button" onClick={() => setCylinderColor(Math.random() * 0xffffff)}>
+              Cambiar color del Cilindro
+            </button>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <button className="button close-button" onClick={() => setShowScene(false)}>
+              Cerrar escena
+            </button>
+          </div>
+        </>
+      ) : (
+        <div className="start-container">
+          <h1 className="title">Bienvenido a la Escena 3D</h1>
+          <p className="text">Presiona "Start" para ver la escena y cambiar los colores de las figuras</p>
+          <button onClick={() => setShowScene(true)} className="start-button">
+            Start
+          </button>
+        </div>
+      )}
     </div>
+
   );
 };
 
